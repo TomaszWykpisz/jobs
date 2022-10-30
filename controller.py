@@ -1,28 +1,69 @@
+from pracuj import Pracuj
+
+
 class Controller():
 
-    def validate_input(self, option):
+    def __init__(self):
+
+        self.option = None
+        self.Pracuj = Pracuj()
+        self.show_options()
+        self.input_option()
+
+
+    def choose_option(self):
+        
+        if self.option == 1: self.Pracuj.get_data_from_website()
+        elif self.option == 2: pass
+        elif self.option == 3: pass
+        elif self.option == 4: pass
+        elif self.option == 5: self.Pracuj.show_data()
+        elif self.option == 6: pass
+        elif self.option == 7: pass
+        elif self.option == 8: pass
+        elif self.option == 9: exit()
+
+        self.show_options()
+        self.input_option()
+
+
+    def show_options(self):
+
+        print("Choose your option")
+        print("1. Get data from pracuj")
+        print("2. Get data from indeed")
+        print("3. Get data from olx")
+        print("4. Get data from everywhere")
+        print("5. Show data from pracuj")
+        print("6. Show data from indeed")
+        print("7. Show data from olx")
+        print("8. Show data from everywhere")
+        print("9. Exit")
+
+
+    def input_option(self):
+        
+        self.option = input("Your option: ")
+        if self.validate_input():
+            self.choose_option()
+
+
+    def validate_input(self):
 
         try:
-            option = int(option)
+            self.option = int(self.option)
         except:
+            self.wrong_input()
             return False
-        if option < 1 or option > 9: return False 
+        
+        if self.option < 1 or self.option > 9:
+            self.wrong_input()
+            return False 
+        
         return True
 
-    def choose_option(self, option):
 
-        if not self.validate_input(option): 
-            option = input("Please choose correct option: ")
-            self.choose_option(option)
-        
-        if option == 1: pass
-        elif option == 2: pass
-        elif option == 3: pass
-        elif option == 4: pass
-        elif option == 5: pass
-        elif option == 6: pass
-        elif option == 7: pass
-        elif option == 8: pass
-        elif option == 9: exit()
-
+    def wrong_input(self):
+        print("Wrong input")
+        self.input_option()
         
