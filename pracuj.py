@@ -7,18 +7,16 @@ class Pracuj():
 
         self.domain = "https://www.pracuj.pl"
         self.jobs = {}
-        print("PRACUJ INIT")
 
 
     def get_data_from_website(self):
 
         i = 1
         while True:
-
             url = self.domain + "/praca/poznan;wp?rd=5&pn=" + str(i)
             class_check = "app-banner__search-box"
             
-            response = Scraper().openUrl(url, class_check)
+            response = Scraper().open_url_selenium(url, class_check)
             if response:
                 i += 1
                 self.get_job_offers(response)

@@ -1,3 +1,4 @@
+import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -13,11 +14,11 @@ class Scraper():
         self.service = Service('C:\\Users\\Tomek\\Desktop\\python\\chromedriver.exe')
         
         opt = Options()
-        opt.headless = True # brak okienka
+        #opt.headless = True 
         opt.add_argument("--window-size=1920,1200")
         self.options = opt
 
-    def openUrl(self, url, check_class):
+    def open_url_selenium(self, url, check_class):
 
         driver = webdriver.Chrome(options=self.options, service=self.service)
         driver.get(url)
@@ -32,3 +33,14 @@ class Scraper():
         finally:
             driver.quit()
             return ret
+
+    def open_url_request(self, url):
+        ret = ''
+        try:
+            r = requests.get(url)
+            ret = r.text
+            print(f'Ok open:\n',url)
+        except: 
+            print(f'Cannot open:\n', url)
+            pass
+        return ret

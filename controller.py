@@ -1,4 +1,6 @@
 from pracuj import Pracuj
+from indeed import Indeed
+from olx import Olx
 
 
 class Controller():
@@ -7,6 +9,8 @@ class Controller():
 
         self.option = None
         self.Pracuj = Pracuj()
+        self.Indeed = Indeed()
+        self.Olx = Olx()
         self.show_options()
         self.input_option()
 
@@ -14,12 +18,12 @@ class Controller():
     def choose_option(self):
         
         if self.option == 1: self.Pracuj.get_data_from_website()
-        elif self.option == 2: pass
-        elif self.option == 3: pass
+        elif self.option == 2: self.Indeed.get_data_from_website()
+        elif self.option == 3: self.Olx.get_data_from_website()
         elif self.option == 4: pass
         elif self.option == 5: self.Pracuj.show_data()
-        elif self.option == 6: pass
-        elif self.option == 7: pass
+        elif self.option == 6: self.Indeed.show_data()
+        elif self.option == 7: self.Olx.show_data()
         elif self.option == 8: pass
         elif self.option == 9: exit()
 
